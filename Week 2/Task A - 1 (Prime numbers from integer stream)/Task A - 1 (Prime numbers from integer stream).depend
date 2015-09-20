@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1442769092 source:c:\users\valik\desktop\git_mipt_informatics\week 2\task a - 1 (prime numbers from integer stream)\main.c
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+	<assert.h>
+	<math.h>
+

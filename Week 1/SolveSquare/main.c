@@ -56,7 +56,7 @@ int main()
 }
 
 double Input (const char name[])
-    {
+{
     printf ("Input %s > ", name);
 
     char cBuff[256]; // need to improve ! how ?
@@ -65,12 +65,11 @@ double Input (const char name[])
     double val = atof (cBuff);
 
     return val;
-    }
+}
 
 int SolveSquare (double a, double b, double c,
                 double* x1, double* x2)
 {
-
     if (fabs (b) == 0)
     {
         if (fabs (a) == 0 && fabs (c) == 0) return INFINITE_ROOTS;
@@ -97,17 +96,20 @@ int SolveSquare (double a, double b, double c,
                 int nDiscriminant = pow (b, 2) - 4 * a * c;
 
                 if (nDiscriminant < 0) return 0;
+
                 if (nDiscriminant == 0)
                 {
                     *x1 = -b / (2 * a);
                     return 1;
                 }
+
                 if (nDiscriminant > DBL_EPSILON)
                 {
                     *x1 = (-b - sqrt (nDiscriminant)) / (2 * a);
                     *x2 = (-b + sqrt (nDiscriminant)) / (2 * a);
                     return 2;
                 }
+
                 return -2;
             }
         }
