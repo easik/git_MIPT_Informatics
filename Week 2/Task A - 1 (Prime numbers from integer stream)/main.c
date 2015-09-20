@@ -72,7 +72,7 @@ long int Input (const char name[])
     for (i = 0; i < nNumOfElements - 1; i++) cBuff[i] = ' ';
     scanf ("%s", cBuff);
 
-    long int nArraySize = strtol (cBuff, NULL, 10);
+    long int nArraySize = strtol (cBuff, NULL, nNumOfElements - 1);
     if (errno == ERANGE) nArraySize = SAD;
 
     return nArraySize;
