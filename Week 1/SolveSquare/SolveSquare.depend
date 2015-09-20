@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1442187351 source:c:\users\valik\dropbox\mipt\ded32\solvesquare\main.c
+	<stdio.h>
+	<stdlib.h>
+	<float.h>
+	<math.h>
+
