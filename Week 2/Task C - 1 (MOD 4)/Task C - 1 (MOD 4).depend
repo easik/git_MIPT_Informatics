@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1442792554 source:c:\users\valik\desktop\git_mipt_informatics\week 2\task c - 1 (mod 4)\main.c
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+
