@@ -1,0 +1,35 @@
+int mod (long int *nNumber, long int nMaxMultiplier)
+{
+    long int nWeight = 1;
+
+    // if (*nNumber < nWeight) return SAD;
+
+    // printf("# %ld \n", *nNumber);
+    while (*nNumber >= 4 * nWeight) {
+        nWeight *= 4;
+
+        if (nWeight >= nMaxMultiplier) {
+            // printf("# n = %ld, w = %ld, m = %ld \n", *nNumber, nWeight, nMaxMultiplier); //developer mode
+            if (nWeight == 1) return SAD;
+
+            nWeight = nWeight / 4;
+            *nNumber = *nNumber - nWeight;
+            nMaxMultiplier = nWeight;
+            printf("# w = %ld, m = %ld \n", nWeight, nMaxMultiplier);
+            if (nMaxMultiplier == 1) {
+                //printf("# here!\n");
+                return SAD; //doesn't exit to main (input nNumber = 58). Why?
+                printf("# metka\n"); // but doesn't show this printf.
+            }
+            mod (nNumber, nMaxMultiplier);
+        }
+    }
+
+    *nNumber = *nNumber - nWeight;
+    nMaxMultiplier = nWeight;
+
+    if (*nNumber == 0) return HAPPY;
+
+    //mod (nNumber, nMaxMultiplier);
+    // return 0;
+}

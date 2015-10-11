@@ -48,6 +48,9 @@ long int Input(const char name[]) {
 }
 
 int mod(long int nNumber) {
+
+    if (nNumber == 1) return TRUE;
+
     if ((nNumber + 2) % 4 == 0) return FALSE;
     else if ((nNumber + 1) % 4 == 0) nNumber = (nNumber + 1) / 4;
     else if ((nNumber + 0) % 4 == 0) nNumber = (nNumber + 0) / 4;
@@ -70,7 +73,6 @@ int mod(long int nNumber) {
     }
 */
     if (nNumber < 1) return FALSE;
-    if (nNumber == 1) return TRUE;
 
     return mod(nNumber);
 }
