@@ -2,92 +2,75 @@
 #include <stdlib.h>
 #include <errno.h>
 
-const int HAPPY = 1;
-const int SAD = 0;
-const int ANGRY = -1;
-const int nMaxElementLen = 10 + 1;
+#define TRUE    1
+#define FALSE   0
+#define SUCCESS    1
+#define FAIL   -1
 
-long int Input (const char name[]);
-int mod (long int *nNumber, long int nMaxMultiplier);
+const int nMaxElementLen = 10 + 1; // len(2^31) + 1 ('1' for '\0' element)
 
-/* ---------------------------------------------------------------------------------------------- */
+long int Input(const char name[]);
+int mod(long int nNumber);
 
-/** ---------------------------- DOES NOT WORKING !!! ----------------------------------**/
+int main() {
+    long int nNumber = Input("Number");
 
-/* -----------------------------------------------------------------------------------------------*/
-
-
-int main()
-{
-    long int nNumber = Input ("Number");
-
-    if (nNumber == ANGRY)
-    {
+    if (nNumber == FAIL) {
         perror("ERROR");
         return 0;
     }
 
-    switch (mod (&nNumber, nNumber))
-    {
-        case (1):
+    switch (mod(nNumber)) {
+        case TRUE:
             printf("YES");
             break;
-        case (0):
+        case FALSE:
             printf("NO");
             break;
+        default:
+            printf("ERROR");
     }
 
     return 0;
 }
 
-long int Input (const char name[])
-{
+long int Input(const char name[]) {
     int i;
     char cBuff[nMaxElementLen];
 
     for (i = 0; i < nMaxElementLen - 1; i++) cBuff[i] = ' ';
-    scanf ("%s", cBuff);
+    scanf("%s", cBuff);
 
-    long int nNumber = strtol (cBuff, NULL, nMaxElementLen - 1);
-    if (errno == ERANGE) nNumber = ANGRY;
+    long int nNumber = strtol(cBuff, NULL, nMaxElementLen - 1);
+    if (errno == ERANGE) nNumber = FAIL;
 
     return nNumber;
 }
 
-int mod (long int *nNumber, long int nMaxMultiplier)
-{
-    long int nWeight = 1;
-
-    if (*nNumber < nWeight) return SAD;
-
-    printf("# %ld \n", *nNumber);
-    while (*nNumber > 4 * nWeight)
-    {
-        nWeight = nWeight * 4;
-
-        if (nWeight >= nMaxMultiplier)
-        {
-            printf("# n = %ld, w = %ld, m = %ld \n", *nNumber, nWeight, nMaxMultiplier); //developer mode
-            if (nWeight == 1) return SAD;
-
-            nWeight = nWeight / 4;
-            *nNumber = *nNumber - nWeight;
-            nMaxMultiplier = nWeight;
-            printf("# w = %ld, m = %ld \n", nWeight, nMaxMultiplier);
-            if (nMaxMultiplier == 1) {
-                //printf("# here!\n");
-                return SAD; //doesn't exit to main (input nNumber = 58). Why?
-                printf("# metka\n"); // but doesn't show this printf.
-            }
-            mod (nNumber, nMaxMultiplier);
+int mod(long int nNumber) {
+    if ((nNumber + 2) % 4 == 0) return FALSE;
+    else if ((nNumber + 1) % 4 == 0) nNumber = (nNumber + 1) / 4;
+    else if ((nNumber + 0) % 4 == 0) nNumber = (nNumber + 0) / 4;
+    else if ((nNumber - 1) % 4 == 0) nNumber = (nNumber - 1) / 4;
+/*
+    if ((nNumber + 1) % 4 == 0) {
+        nNumber = (nNumber + 1) / 4;
+    } else if ((nNumber + 0) % 4 == 0) {
+        nNumber = (nNumber + 0) / 4;
+    } else if ((nNumber - 1) % 4 == 0) {
+        nNumber = (nNumber - 1) / 4;
+    }
+*/
+/*
+    for (i = -1; i <= 1; i++) {
+        if ((nNumber + i) % 4 == 0) {
+            nNumber = (nNumber + i) / 4;
+            break;
         }
     }
+*/
+    if (nNumber < 1) return FALSE;
+    if (nNumber == 1) return TRUE;
 
-    *nNumber = *nNumber - nWeight;
-    nMaxMultiplier = nWeight;
-
-    if (*nNumber == 0) return HAPPY;
-
-    mod (nNumber, nMaxMultiplier);
-    return 0;
+    return mod(nNumber);
 }

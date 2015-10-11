@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1444008273 source:c:\users\valik\dropbox\mipt\subjects\ded32\eugene_onegin\eugeneonegin\main.c
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+	<assert.h>
+	<string.h>
+	<ctype.h>
+
