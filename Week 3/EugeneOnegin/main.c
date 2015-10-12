@@ -11,11 +11,11 @@
 
 #define SUCCESS 1
 #define FAIL    -1
-#define CHECKERROR(a)   if(a == FAIL) { \
-                            printf ("%s\n", sErrMsg); \
-                            if (cBuffer) free (cBuffer); \
-                            if (pLines) free (pLines); \
-                            return FAIL; \
+#define CHECKERROR(a)   if(a == FAIL) {                     \
+                            printf ("%s\n", sErrMsg);       \
+                            if (cBuffer) free (cBuffer);    \
+                            if (pLines) free (pLines);      \
+                            return FAIL;                    \
                         }
 #define ERRMSG_LEN  1024
 char sErrMsg[ERRMSG_LEN];
